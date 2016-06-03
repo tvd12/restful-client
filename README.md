@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/tvd12/restful-client.svg?branch=master)](https://travis-ci.org/tvd12/restful-client)
-[![Dependency Status](https://www.versioneye.com/user/projects/5717990efcd19a00415b1f61/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5717990efcd19a00415b1f61)
+[![Dependency Status](https://www.versioneye.com/user/projects/57512a9ac8901c000d5b411e/badge.svg?style=flat)](https://www.versioneye.com/user/projects/57512a9ac8901c000d5b411e)
 [![Coverage Status](https://coveralls.io/repos/github/tvd12/restful-client/badge.svg?branch=master)](https://coveralls.io/github/tvd12/restful-client?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.tvd12/restful-client/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.tvd12/restful-client)
 [![Javadoc](https://javadoc-emblem.rhcloud.com/doc/com.tvd12/restful-client/badge.svg)](http://www.javadoc.io/doc/com.tvd12/restful-client)
