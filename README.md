@@ -4,11 +4,11 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.tvd12/restful-client/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.tvd12/restful-client)
 [![Javadoc](https://javadoc-emblem.rhcloud.com/doc/com.tvd12/restful-client/badge.svg)](http://www.javadoc.io/doc/com.tvd12/restful-client)
 
-#Synopsis
+# Synopsis
 
 This project support to call restful api from client
 
-#Code Example
+# Code Example
 
 **1. Call get method**
 
@@ -44,11 +44,11 @@ This project support to call restful api from client
         .done()
         .post(AccessTokenWrapper.class); // also put and delete method
 ```
-#Motivation
+# Motivation
 
 Use Spring framework to call restful api is a good choice and builder is a good design patter, so we combine them to make calling restful api more convenient
 
-#Installation
+# Installation
 
 ```xml
 	<dependency>
@@ -57,19 +57,19 @@ Use Spring framework to call restful api is a good choice and builder is a good 
 		<version>1.0.1</version>
 	</dependency>
 ```
-#API Reference
+# API Reference
 
 http://www.javadoc.io/doc/com.tvd12/restful-client
 
-#Tests
+# Tests
 
 mvn test
 
-#Contributors
+# Contributors
 
 None
 
-#License
+# License
 
 - Apache License, Version 2.0
 	
