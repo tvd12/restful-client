@@ -54,7 +54,7 @@ Use Spring framework to call restful api is a good choice and builder is a good 
 	<dependency>
 		<groupId>com.tvd12</groupId>
 		<artifactId>restful-client</artifactId>
-		<version>1.0.1</version>
+		<version>1.0.3</version>
 	</dependency>
 ```
 # API Reference

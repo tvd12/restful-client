@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -152,8 +153,9 @@ public class RestCaller {
         RestTemplate template = templateBuilder.build();
         HttpEntity<?> entity = getHttpEntity();
         getLogger().debug("call {} from uri {} with entity {}", method, uri, entity);
-        return template.exchange(uri, method, entity, clazz)
-                .getBody();
+        ResponseEntity<T> exchange = template.exchange(uri, method, entity, clazz);
+        getLogger().debug("done {} from uri {} with result: \n{}\n", method, uri, exchange);
+        return exchange.getBody();
     }
     
     private HttpEntity<?> getHttpEntity() {
@@ -175,6 +177,7 @@ public class RestCaller {
     /**
      * Convert (map) response in string value to an object
      * 
+     * @param <T> the value type
      * @param clazz class of object to convert
      * @return mapped object
      */
