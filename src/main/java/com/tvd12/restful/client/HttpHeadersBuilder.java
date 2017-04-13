@@ -126,8 +126,8 @@ public class HttpHeadersBuilder {
     /**
      * Add allowed HTTP method to the list
      * 
-     * @param method
-     * @return
+     * @param method the http method
+     * @return this pointer
      */
     public HttpHeadersBuilder method(HttpMethod method) {
         allowedMethods.add(method);

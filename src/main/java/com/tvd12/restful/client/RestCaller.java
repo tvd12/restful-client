@@ -3,6 +3,8 @@ package com.tvd12.restful.client;
 import java.io.IOException;
 import java.net.URI;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -103,65 +105,61 @@ public class RestCaller {
     /**
      * Call restful user GET method and map value to an object
      * 
+     * @param <T> the body type
      * @param clazz class of the object to map
      * @return mapped object
      */
     public <T> T get(Class<T> clazz) {
-        validateAll();
-        URI uri = uriBuilder.build();
-        RestTemplate template = templateBuilder.build();
-        HttpEntity<?> entity = (entityBuilder != null)
-                ? entityBuilder.build() : new HttpEntity<>(new HttpHeaders());
-        return template.exchange(uri, HttpMethod.GET, entity, clazz)
-                .getBody();
+        return call(HttpMethod.GET, clazz);
     }
     
     /**
      * Call restful user POST method and map value to an object
      * 
+     * @param <T> the body type
      * @param clazz class of the object to map
      * @return mapped object
      */
     public <T> T post(Class<T> clazz) {
-        validateAll();
-        URI uri = uriBuilder.build();
-        RestTemplate template = templateBuilder.build();
-        HttpEntity<?> entity = (entityBuilder != null)
-                ? entityBuilder.build() : new HttpEntity<>(new HttpHeaders());
-        return template.exchange(uri, HttpMethod.POST, entity, clazz)
-                .getBody();
+        return call(HttpMethod.POST, clazz);
     }
     
     /**
      * Call restful user PUT method and map value to an object
      * 
+     * @param <T> the body type
      * @param clazz class of the object to map
      * @return mapped object
      */
     public <T> T put(Class<T> clazz) {
-        validateAll();
-        URI uri = uriBuilder.build();
-        RestTemplate template = templateBuilder.build();
-        HttpEntity<?> entity = (entityBuilder != null)
-                ? entityBuilder.build() : new HttpEntity<>(new HttpHeaders());
-        return template.exchange(uri, HttpMethod.PUT, entity, clazz)
-                .getBody();
+       return call(HttpMethod.PUT, clazz);
     }
     
     /**
      * Call restful user DELETE method and map value to an object
      * 
+     * @param <T> the body type
      * @param clazz class of the object to map
      * @return mapped object
      */
     public <T> T delete(Class<T> clazz) {
+        return call(HttpMethod.DELETE, clazz);
+    }
+    
+    private <T> T call(HttpMethod method, Class<T> clazz) {
         validateAll();
         URI uri = uriBuilder.build();
         RestTemplate template = templateBuilder.build();
-        HttpEntity<?> entity = (entityBuilder != null)
-                ? entityBuilder.build() : new HttpEntity<>(new HttpHeaders());
-        return template.exchange(uri, HttpMethod.DELETE, entity, clazz)
+        HttpEntity<?> entity = getHttpEntity();
+        getLogger().debug("call {} from uri {} with entity {}", method, uri, entity);
+        return template.exchange(uri, method, entity, clazz)
                 .getBody();
+    }
+    
+    private HttpEntity<?> getHttpEntity() {
+        return (entityBuilder != null)
+               ? entityBuilder.build() 
+               : new HttpEntity<>(new HttpHeaders());
     }
     
     /**
@@ -186,6 +184,10 @@ public class RestCaller {
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
+    }
+    
+    private Logger getLogger() {
+        return LoggerFactory.getLogger(getClass());
     }
     
 }

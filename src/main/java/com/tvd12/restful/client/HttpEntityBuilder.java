@@ -60,6 +60,7 @@ public class HttpEntityBuilder {
     /**
      * Build HttpEntity object
      * 
+     * @param <T> the body type
      * @return a HtttpEntity object
      */
     @SuppressWarnings("unchecked")

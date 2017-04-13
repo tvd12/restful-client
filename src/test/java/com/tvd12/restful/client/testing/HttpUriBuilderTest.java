@@ -24,7 +24,7 @@ public class HttpUriBuilderTest {
                 .port(8080)
                 .queryParam("page", 0)
                 .queryParam("limit", 10)
-                .variable("dungtv")
+                .values("dungtv")
                 .build();
         assertTrue(uri.toString().contains("http://www.tvd12.com:8080/users/dungtv"));
     }

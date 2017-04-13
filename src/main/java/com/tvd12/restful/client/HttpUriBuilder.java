@@ -2,12 +2,15 @@ package com.tvd12.restful.client;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.springframework.web.util.UriComponentsBuilder;
+
+import com.google.common.collect.Lists;
 
 /**
  * Support to build an URI
@@ -27,7 +30,7 @@ public class HttpUriBuilder {
     private int port;
     
     // values of path variables
-    private List<Object> uriVariables
+    private List<Object> values
             = new ArrayList<>();
     
     // query parameters
@@ -38,7 +41,9 @@ public class HttpUriBuilder {
     private RestCaller parent;
     
     // default constructor
-    public HttpUriBuilder() {}
+    public HttpUriBuilder() {
+        this.url = "";
+    }
     
     // construct with reference of parent
     public HttpUriBuilder(RestCaller parent) {
@@ -86,18 +91,28 @@ public class HttpUriBuilder {
      * @return this pointer
      */
     public HttpUriBuilder queryParam(String name, Object value) {
-        queryParams.put(name, value);
+        this.queryParams.put(name, value);
         return this;
     }
     
     /**
      * Add an value of a path variable to the list
      * 
-     * @param value value of path variable
+     * @param values values of path variable
      * @return this pointer
      */
-    public HttpUriBuilder variable(Object value) {
-        uriVariables.add(value);
+    public HttpUriBuilder values(Object... values) {
+        return values(Lists.newArrayList(values));
+    }
+    
+    /**
+     * Add an value of a path variable to the list
+     * 
+     * @param values values of path variable
+     * @return this pointer
+     */
+    public HttpUriBuilder values(Collection<?> values) {
+        this.values.addAll(values);
         return this;
     }
     
@@ -124,7 +139,7 @@ public class HttpUriBuilder {
         if(port > 0)
             uriComponentsBuilder.port(port);
         return uriComponentsBuilder
-                .buildAndExpand(uriVariables.toArray())
+                .buildAndExpand(values.toArray())
                 .encode()
                 .toUri();
     }
